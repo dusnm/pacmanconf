@@ -1,0 +1,38 @@
+package pacmanconf
+
+// A list of all possible keys from pacman.conf.
+const (
+	KeyRootDir                  = "RootDir"
+	KeyDBPath                   = "DBPath"
+	KeyCacheDir                 = "CacheDir"
+	KeyHookDir                  = "HookDir"
+	KeyGPGDir                   = "GPGDir"
+	KeyLogFile                  = "LogFile"
+	KeyHoldPkg                  = "HoldPkg"
+	KeyIgnorePkg                = "IgnorePkg"
+	KeyIgnoreGroup              = "IgnoreGroup"
+	KeyInclude                  = "Include"
+	KeyArchitecture             = "Architecture"
+	KeyXferCommand              = "XferCommand"
+	KeyNoUpgrade                = "NoUpgrade"
+	KeyNoExtract                = "NoExtract"
+	KeyCleanMethod              = "CleanMethod"
+	KeySigLevel                 = "SigLevel"
+	KeyLocalFileSigLevel        = "LocalFileSigLevel"
+	KeyRemoteFileSigLevel       = "RemoteFileSigLevel"
+	KeyParallelDownloads        = "ParallelDownloads"
+	KeyDownloadUser             = "DownloadUser"
+	KeyUseSyslog                = "UseSyslog"
+	KeyColor                    = "Color"
+	KeyNoProgressBar            = "NoProgressBar"
+	KeyCheckSpace               = "CheckSpace"
+	KeyVerbosePkgLists          = "VerbosePkgLists"
+	KeyDisableDownloadTimeout   = "DisableDownloadTimeout"
+	KeyDisableSandbox           = "DisableSandbox"
+	KeyDisableSandboxFilesystem = "DisableSandboxFilesystem"
+	KeyDisableSandboxSyscalls   = "DisableSandboxSyscalls"
+	KeyILoveCandy               = "ILoveCandy" // undocumented easter-egg
+	KeyServer                   = "Server"
+	KeyCacheServer              = "CacheServer"
+	KeyUsage                    = "Usage"
+)

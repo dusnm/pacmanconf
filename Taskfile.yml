@@ -1,0 +1,43 @@
+version: '3'
+
+vars:
+  GOTESTSUM: go tool gotestsum
+  FORMAT: '{{.FORMAT | default "testdox"}}'
+  PKGS: '{{.PKGS | default "./..."}}'
+  REPORTS_DIR: reports
+
+tasks:
+  setup:
+    desc: Add gotestsum as a pinned tool dependency in go.mod
+    cmds:
+      - go get -tool gotest.tools/gotestsum@latest
+    status:
+      - go tool -n gotestsum
+
+  test:
+    desc: 'Run tests uncached (task test -- -run TestParse)'
+    deps: [setup]
+    cmds:
+      - '{{.GOTESTSUM}} --format {{.FORMAT}} -- -count=1 {{.CLI_ARGS}} {{.PKGS}}'
+
+  test:race:
+    desc: Run tests with the race detector
+    deps: [setup]
+    cmds:
+      - '{{.GOTESTSUM}} --format {{.FORMAT}} -- -count=1 -race {{.CLI_ARGS}} {{.PKGS}}'
+
+  test:watch:
+    desc: Re-run tests of changed packages on save
+    deps: [setup]
+    cmds:
+      - '{{.GOTESTSUM}} --format {{.FORMAT}} --watch -- -count=1 {{.CLI_ARGS}}'
+
+  test:cover:
+    desc: Run tests with coverage and open the HTML report
+    deps: [setup]
+    cmds:
+      - mkdir -p {{.REPORTS_DIR}}
+      - '{{.GOTESTSUM}} --format {{.FORMAT}} -- -count=1 -coverprofile={{.REPORTS_DIR}}/coverage.out {{.CLI_ARGS}} {{.PKGS}}'
+      - go tool cover -func={{.REPORTS_DIR}}/coverage.out | tail -1
+      - go tool cover -html={{.REPORTS_DIR}}/coverage.out -o {{.REPORTS_DIR}}/coverage.html
+      - echo "HTML report at {{.REPORTS_DIR}}/coverage.html"
