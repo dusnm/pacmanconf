@@ -1,5 +1,9 @@
 # pacmanconf
 
+[![License: LGPL v3](https://img.shields.io/badge/License-LGPL_v3-blue.svg)](https://github.com/dusnm/pacmanconf/blob/main/LICENSE)
+
+[![Tests](https://github.com/dusnm/pacmanconf/actions/workflows/test.yml/badge.svg?branch=main)](https://github.com/dusnm/pacmanconf/actions/workflows/test.yml)
+
 A go library that parses pacman.conf for use in `libalpm` and similar purposes.
 
 ## Requirements
